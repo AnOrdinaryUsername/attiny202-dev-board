@@ -48,4 +48,4 @@ Here's how the fully assembled PCB looks.
 
 Top             |  Bottom
 :-------------------------:|:-------------------------:
-![Top View of PCB](https://github.com/user-attachments/assets/f605784b-5ecf-4019-8c0d-3be116e3be72) | ![Bottom View of PCB](https://github.com/user-attachments/assets/e0306b53-3de8-4787-841f-0580bb6cd5db)
+![Top View of PCB](docs/images/PCB_Top.jpg) | ![Bottom View of PCB](docs/images/PCB_Bottom.jpg)
