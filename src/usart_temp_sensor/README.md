@@ -1,7 +1,7 @@
 # USART Example w/ On-Chip Temperature Sensor
 
-A basic USART example that transfers on-chip temeprature sensor data to your PC's terminal every
-1 second. The program uses up 1916 bytes, or 94% of flash memory!
+A basic USART example that transfers on-chip temperature sensor data to your PC's terminal every
+1 second. The program uses up 1916 bytes or 94% of flash memory!
 
 ```bash
 > cat /dev/ttyUSB0
@@ -13,6 +13,11 @@ Temperature (C): 34
 
 Temperature (C): 34
 ```
+
+If your sensor doesn't seem to output the right values, this could be the issue (from Errata).
+
+![Screenshot (23)](https://github.com/user-attachments/assets/72a67ba8-01b6-484c-807e-d6d94cbd01d3)
+
 
 ## Programming
 
