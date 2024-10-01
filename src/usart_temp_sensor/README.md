@@ -21,11 +21,7 @@ If your sensor doesn't seem to output the right values, this could be the issue 
 
 ## Programming
 
-Build the project then upload the hex file using avrdude
-
-```
-avrdude -vvv -c serialupdi -b 230400 -P /dev/ttyUSB0 -p t202 -U flash:w:your_build_file.hex:a
-```
+See [programming section](https://github.com/AnOrdinaryUsername/attiny202-dev-board/blob/master/README.md#programming).
 
 ## Connections
 
