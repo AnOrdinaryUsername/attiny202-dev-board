@@ -19,8 +19,8 @@ upload: ${PROJECT_BUILD}/${proj}.hex
 hexdump: ${PROJECT_BUILD}/${proj}.hex
 	avr-objdump -b ihex -s ${PROJECT_BUILD}/${proj}.hex
 
-fuses:
-	 avrdude -vvv -c serialupdi -b 230400 -P /dev/ttyUSB0 -p t202 -U fuses:r:attiny202.X.production.hex:a
+fuses: ${PROJECT_BUILD}/${proj}.hex
+	 avrdude -vvv -c serialupdi -b 230400 -P ${port} -p t202 -U fuses:r:${PROJECT_BUILD}/${proj}.hex:a
 
 clean:
 	rm -rf ${PROJECT_BUILD}
