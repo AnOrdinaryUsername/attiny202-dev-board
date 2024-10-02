@@ -122,12 +122,25 @@ int main(void) {
     _PROTECTED_WRITE(CLKCTRL_MCLKCTRLB, CLKCTRL_PDIV_2X_gc | CLKCTRL_PEN_bm);
     char buffer[20];
     USART0_init();
-    
+
+    // Set Pin 1 in Port A as input
+    PORTA_IN = PIN1_bm;
+    // Enable internal pull-up resistor for PA1
+    // See 16.5.11 and Table 31-15. I/O Pin Characteristics
+    PORTA_PIN1CTRL = PORT_PULLUPEN_bm;
+
     while (1) {
-        int16_t temp = read_temperature_sensor();
-        USART0_sendString("Temperature (C): ");
-        USART0_sendString(itoa(temp, buffer));
-        USART0_sendString("\r\n");
-        _delay_ms(1000);
+        // Whenever PA1 is pulled to ground, send USART string to PC
+        uint8_t is_pressed = (PORTA.IN & PIN1_bm) ? 0 : 1;
+
+        if (is_pressed) {
+            int16_t temp = read_temperature_sensor();
+            USART0_sendString("Temperature (C): ");
+            USART0_sendString(itoa(temp, buffer));
+            USART0_sendString("\r\n");
+        }
+
+        // Debounce delay
+        _delay_ms(100);
     }
 }
