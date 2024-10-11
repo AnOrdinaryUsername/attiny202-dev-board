@@ -5,13 +5,11 @@ time you press a push button.
 
 ```bash
 > cat /dev/ttyUSB0
-Temperature (C): 34
+Temperature (C): 27
 
-Temperature (C): 34
+Turning LED on
 
-Temperature (C): 34
-
-Temperature (C): 34
+Turning LED off
 ```
 
 If your sensor doesn't seem to output the right values, this could be the issue (from Errata).
@@ -27,15 +25,21 @@ See [programming section](https://github.com/AnOrdinaryUsername/attiny202-dev-bo
 
 ![USART Button Schematic](/docs/images/USART_Button.png)
 
-Using a USB to TTL adapter, make the following connections to the dev board:
-- Power it via USB-C **or** connect 3.3V/5V to VDD/VCC 
-- GND to GND pin
-- RXD to PA6 pin (TXD)
-- TXD to PA7 pin (RXD)
+Using a USB to Serial Adapter, make the following connections to a breadboard:
+- Connect 3.3V/5V to Breadboard +
+- GND to Breadboard -
 
-On the breadboard with a push button:
-- PA1 to any button pin
-- GND to button pin next to PA1
+On the breadboard:
+- Add a button + LED with 470Ω resistor
+- Breadboard - to any button pin and cathode of LED
+
+With the dev board connect:
+- VDD to Breadboard +
+- GND to Breadboard -
+- PA6 pin (TXD) to RXD of USB to Serial Adapter
+- PA7 pin (RXD) to TXD of USB to Serial Adapter
+- PA1 on button pin (near the one that was connected to ground)
+- PA2 to anode of LED
 
 Connect the adapter to your PC then run the following command
 
@@ -47,4 +51,10 @@ or
 
 ```bash
 screen /dev/ttyUSB0 9600
+```
+
+To turn LED on or off, run
+```
+echo "y" > /dev/ttyUSB0
+echo "n" > /dev/ttyUSB0
 ```
